@@ -25,8 +25,7 @@ jobs:
         run: ls -al
   second-job:
     runs-on: ubuntu-latest
-    env:
-      MY_ENV_VAR: "this is the end"
+    
     steps:
       - name: check file there
         run: |
@@ -35,5 +34,5 @@ jobs:
           ls -al
       - name: Test environment variable
         run: |
-          echo "Value: $MY_ENV_VAR "
+          echo "Value: ${{ vars.MY_ENV_VAR }}"
           echo "Secret: ${{secrets.MY_SECRET_VAR}}"
