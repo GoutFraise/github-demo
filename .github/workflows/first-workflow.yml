@@ -31,3 +31,6 @@ jobs:
           hostname
           pwd
           ls -al
+      - name: Test environment variable
+        run: |
+          echo "Value: $MY_ENV_VAR"
