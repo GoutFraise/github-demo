@@ -36,3 +36,5 @@ jobs:
         run: |
           echo "Value: ${{ vars.MY_ENV_VAR }}"
           echo "Secret: ${{secrets.MY_SECRET_VAR}}"
+      - name: Get GitHub context
+        run: echo "${{ toJSON(github) }}"
