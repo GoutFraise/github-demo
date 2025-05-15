@@ -6,6 +6,10 @@ on:
         required: false
         default: none
         type: string
+    outputs:
+      result:
+        description: Workflow Deployment Result
+        value: ${{ jobs.deploy.outputs.job-result }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,7 +30,4 @@ jobs:
       - name: Output result
         id: output-result
         run: echo "deployment-result=This is an output" >> $GITHUB_OUTPUT
-  outputs:
-    result:
-      description: Workflow Deployment Result
-      value: ${{ jobs.deploy.outputs.job-result }}
+        
