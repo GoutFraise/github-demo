@@ -1,6 +1,6 @@
 name: Fourth Workflow
 on:
-  # push:
+  push:
   workflow_dispatch:
     inputs:
       display-bom:
