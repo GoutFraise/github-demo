@@ -1,18 +1,26 @@
 name: Second Workflow
-on: push
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      display-bom:
+        required: false
+        type: 'boolean'
+        default: false
+
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Get code
-  #       uses: actions/checkout@v4
-  #     - name: Cypress run
-  #       uses: cypress-io/github-action@v6
-  #       with:
-  #         start: npm run dev
-  #         wait-on: 'http://localhost:5173'
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:5173'
   build:
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -56,5 +64,6 @@ jobs:
       - name: Output artifacts
         run: ls
       - name: Display BOM
+        if: github.event.inputs.display-bom
         run: echo "${{ needs.build.outputs.bom }}"
 
