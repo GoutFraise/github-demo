@@ -1,6 +1,6 @@
 name: Fourth Workflow
 on:
-  # push:
+  push:
   workflow_dispatch:
     inputs:
       display-bom:
@@ -69,6 +69,7 @@ jobs:
   deploy:
     needs: [build, lint]
     uses: ./.github/workflows/deploy.yml
-   
-      
+    with:
+      artifact-name: my-app
+            
 
